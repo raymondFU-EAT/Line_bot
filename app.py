@@ -63,6 +63,30 @@ def handle_message(event):
     elif '訂位' in msg:
         x = '你想訂位,是嗎?'
 
+    elif'我想測BMI' in msg:
+        x = input ("請輸入身高(cm)")
+        if x > 150:
+            x = '不錯高喔'
+
+        
+        w = input ("請輸入體重(kg)")
+        h = int (h)
+        w = int (w)
+        h = h / 100
+        b = w / h / h
+        if b < 18.5:
+            print("BMI", b, "體重過輕")
+        elif b <= 18.5 and b < 24:
+            print("BMI", b, "正常範圍")
+        elif b >= 24 and b <27:
+            print("BMI", b, "過重")
+        elif b >= 27 and b <30:
+            print("BMI", b, "輕度肥胖")
+        elif b >= 30 and b <35:
+            print("BMI", b, "中度肥胖")
+        else :
+            print("BMI", b, "重度肥胖")
+
     line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(text=x))
