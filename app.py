@@ -43,11 +43,16 @@ def handle_message(event):
     msg = event.message.text
     x = '很抱歉,你說甚麼'
 
-    if '給我貼圖' in msg:
+    if ['給', '給我', '給我貼圖'] in msg:
         sticker_message = StickerSendMessage(
-        package_id='11537',
-        sticker_id='52002768'
-    )
+            package_id='11537',
+            sticker_id='52002768'
+        )
+        
+        line_bot_api.reply_message(
+                event.reply_token,
+                sticker_message)
+        return
 
     if msg in ['yoyo', 'hi']:
         x = '你好'
@@ -58,9 +63,7 @@ def handle_message(event):
     elif '訂位' in msg:
         x = '你想訂位,是嗎?'
 
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=x))
+    
 
 
 if __name__ == "__main__":
